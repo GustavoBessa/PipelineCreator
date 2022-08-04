@@ -1,0 +1,55 @@
+parameters:
+- name: env  # defaults for any parameters that aren't specified
+  default: ''
+
+- name: tag
+  default: ''
+  
+- name: dockerRegistryServiceConnection
+  default: ''
+
+- name: imageRepository
+  default: ''
+
+
+steps:
+- task: NodeTool@0
+  displayName: "Install NodeTool"
+  inputs:
+    versionSpec: '16.x'
+    checkLatest: true
+
+- task: Npm@1
+  displayName: "Npm Install"
+  inputs:
+    command: 'install'
+
+- task: replacetokens@3
+  displayName: Replace env vars
+  inputs:
+    targetFiles: '$(envtargetFile)'
+    encoding: 'auto'
+    writeBOM: true
+    actionOnMissing: 'fail'
+    keepToken: false
+    tokenPrefix: '$_'
+    tokenSuffix: '_$'
+    useLegacyPattern: false
+    enableTransforms: false
+    enableTelemetry: true
+
+- task: Npm@1
+  displayName: "Npm Run Build"
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: Docker@2
+  displayName: Build and push an image to container registry
+  inputs:
+    command: buildAndPush
+    repository: '${{parameters.imageRepository}}'
+    dockerfile: $(dockerfilePath)
+    containerRegistry: ${{parameters.dockerRegistryServiceConnection}}
+    tags: |
+      ${{parameters.tag}}

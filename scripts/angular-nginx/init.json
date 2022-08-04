@@ -1,0 +1,27 @@
+{
+    "parameters": {
+        "name": "testeiac",
+        "rg": "teste-bicep-iac",
+        "localpath": "C:/Users/gusta/Desktop/Projetos/bicep-teste/projects-examples/angular-nginx",
+        "envtargetFile":"./src/environments/environment.prod.ts",
+        "stages": [
+            {
+                "name": "qas",
+                "variablegroup": null,
+                "imageRepository": "testeimgqas",
+                "branch": "qas",
+                "sku":"B1",
+                "dockerImage":"testeimgqas"
+            },
+            {
+                "name": "prd",
+                "variablegroup": null,
+                "imageRepository": "testeimgprd",
+                "branch": "main",
+                "sku":"B1",
+                "dockerImage":"testeimgprd"
+            }
+            
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+trigger: []
+resources:
+- repo: self
+variables:
+  dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
+  tag: $(Build.BuildId)
+  vmImageName: ubuntu-latest
+pool:
+  vmImage: $(vmImageName)
+stages:
+- stage: Build
+  displayName: Build
+  jobs: []

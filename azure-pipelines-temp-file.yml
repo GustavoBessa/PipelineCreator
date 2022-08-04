@@ -1,0 +1,28 @@
+trigger:
+- ##
+resources:
+- repo: self
+variables:
+  dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
+  tag: $(Build.BuildId)
+  vmImageName: ubuntu-latest
+  dockerRegistryServiceConnection: ##
+  envtargetFile: ##
+pool:
+  vmImage: $(vmImageName)
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: ##
+    displayName: ##
+    condition: ##
+    variables:
+    - group: ##
+    steps:
+    - template: templates/build.yml
+      parameters:
+        env: ##
+        tag: $(tag)
+        imageRepository: ##
+        dockerRegistryServiceConnection: $(dockerRegistryServiceConnection)

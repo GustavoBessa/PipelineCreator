@@ -1,0 +1,34 @@
+{
+    "administratorsGroup": null,
+    "authorization": {
+      "parameters": {
+        "loginServer": "acrtesteiac.azurecr.io",
+        "role": "8311e382-0749-4cb8-b61a-304f252e45ec", 
+        "servicePrincipalId": ""
+      },
+      "scheme": "ServicePrincipal"
+    },
+    "data": {
+      "appObjectId": "",
+      "azureSpnPermissions": "",
+      "azureSpnRoleAssignmentId": "",
+      "registrytype": "ACR",
+      "spnObjectId": "",
+      "subscriptionId": "9c2a1079-35f0-4298-9eb3-7f63903f2ae1",
+      "subscriptionName": "Bemol - CSP"
+    },
+    "description": "ACR Service Connection created by automated infrastructure pipeline.",
+    "groupScopeId": null,
+    "isReady": true,
+    "isShared": false,
+    "name": "acrtesteiac",
+    "operationStatus": {
+      "state": "Ready",
+      "statusMessage": ""
+    },
+    "owner": "Library",
+    "readersGroup": null,
+    "serviceEndpointProjectReferences": null,
+    "type": "dockerregistry",
+    "url": "https://hub.docker.com/"
+  }

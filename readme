@@ -1,0 +1,5 @@
+# Bem Vindo ao Construtor de Ambientes Bemol
+
+A pasta `/scripts/` contém todos os scripts desenvolvidos dentro do sistema, para inicializar um script, verifique o arquivo `init.json` e preencha os parametros do ambiente, após a verificação execute o comando: `python angular-nginx.py`
+
+Suporte: Gustavo Bessa (gustavobessa@bemol.com.br)

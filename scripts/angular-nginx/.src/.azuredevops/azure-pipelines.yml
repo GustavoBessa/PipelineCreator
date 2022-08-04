@@ -1,0 +1,41 @@
+trigger:
+- qas
+- main
+resources:
+- repo: self
+variables:
+  dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
+  tag: $(Build.BuildId)
+  vmImageName: ubuntu-latest
+  envtargetFile: ./src/environments/environment.prod.ts
+  dockerRegistryServiceConnection: acrtesteiac
+pool:
+  vmImage: $(vmImageName)
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: qas
+    displayName: qas
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/qas')
+    variables:
+    - group: null
+    steps:
+    - template: templates/build.yml
+      parameters:
+        env: qas
+        tag: $(tag)
+        imageRepository: testeimgqas
+        dockerRegistryServiceConnection: $(dockerRegistryServiceConnection)
+  - job: prd
+    displayName: prd
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+    variables:
+    - group: null
+    steps:
+    - template: templates/build.yml
+      parameters:
+        env: prd
+        tag: $(tag)
+        imageRepository: testeimgprd
+        dockerRegistryServiceConnection: $(dockerRegistryServiceConnection)
